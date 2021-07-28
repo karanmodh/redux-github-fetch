@@ -44,7 +44,9 @@ export function fetchRepos(username:string) {
             if(res.error) {
                 throw(res.error);
             }
-            dispatch(fetchSearchSuccess(username, res));
+            setTimeout(function(){
+                dispatch(fetchSearchSuccess(username, res));
+            }, 750); 
             return res;
         })
         .catch(error => {
@@ -55,3 +57,4 @@ export function fetchRepos(username:string) {
 
 export const selectRepos = (state: RootState) => state.search.repos;
 export const selectUsername = (state: RootState) => state.search.username;
+export const getLoadingState = (state: RootState) => state.search.loading;

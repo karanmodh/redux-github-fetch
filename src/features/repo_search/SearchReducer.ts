@@ -4,6 +4,7 @@ import {FETCH_SEARCH_PENDING, FETCH_SEARCH_SUCCESS, FETCH_SEARCH_ERROR, UPDATE_U
 const initialState = {
     username: "",
     repos: [],
+    loading: false,
     error: null
 }
 
@@ -18,18 +19,20 @@ export function searchReducer(state = initialState, action:any) {
         case FETCH_SEARCH_PENDING: 
             return {
                 ...state,
+                loading: true,
                 username: action.username
             }
         case FETCH_SEARCH_SUCCESS:
-            console.log("Here")
             return {
                 ...state,
+                loading: false,
                 username: action.username,
                 repos: action.repos
             }
         case FETCH_SEARCH_ERROR:
             return {
                 ...state,
+                loading: false,
                 error: action.error
             }
         default: 
